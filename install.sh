@@ -8,7 +8,7 @@
 
 # Load micromamba module
 module load micromamba
-
+eval "$(micromamba shell hook --shell bash)"
 # Set micromamba root to scratch
 export MAMBA_ROOT_PREFIX="${MAMBA_ROOT_PREFIX:-/vast/scratch/users/$USER/.micromamba}"
 mkdir -p "$MAMBA_ROOT_PREFIX"
