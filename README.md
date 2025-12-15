@@ -21,3 +21,4 @@ To post to the forum you can either use the web interface or email to spisonet@g
 # Installation
 
 Modified for WEHI Milton HPC. Just clone this repo and run ```sbatch install.sh```
+```bash ani.sh``` for anisotropic correction
