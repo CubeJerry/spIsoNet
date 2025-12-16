@@ -35,6 +35,7 @@ PROJECT_CLEAN="${PROJECT// /_}"
 # Create output folder
 OUTPUT_DIR="$SCRATCH_ROOT/$PROJECT_CLEAN"
 mkdir -p "$OUTPUT_DIR"
+mkdir -p "$OUTPUT_DIR/independent"
 
 # FSC3D output filename
 FSC_OUT="$PROJECT_CLEAN.mrc"
@@ -50,7 +51,7 @@ python spIsoNet/bin/spisonet.py fsc3d \
 
 echo "3DFSC calculation completed: $OUTPUT_DIR/$FSC_OUT"
 
-# Step 2: Anisotropy Correction
+# Step 2: Anisotropy Correction (and independent training)
 export CUDA_VISIBLE_DEVICES=0
 
 python spIsoNet/bin/spisonet.py reconstruct \
@@ -59,5 +60,13 @@ python spIsoNet/bin/spisonet.py reconstruct \
     --mask "$MASK" \
     --limit_res "$LIMIT_RES" \
     --output_dir "$OUTPUT_DIR"
+
+python spIsoNet/bin/spisonet.py reconstruct \
+    "$HALF1" "$HALF2" \
+    --aniso_file "$OUTPUT_DIR/$FSC_OUT" \
+    --mask "$MASK" \
+    --independent \
+    --limit_res "$LIMIT_RES" \
+    --output_dir "$OUTPUT_DIR/independent"
 
 echo "Reconstruction completed: $OUTPUT_DIR"
