@@ -1,11 +1,11 @@
 #!/bin/bash
 echo "Please enter required inputs."
 
-read -p "Enter path to Half-map A (.mrc): " HALF1
+read -p "Enter path to Half-map A (with .mrc): " HALF1
 
-read -p "Enter path to Half-map B (.mrc): " HALF2
+read -p "Enter path to Half-map B (with .mrc): " HALF2
 
-read -p "Enter path to Mask file (.mrc): " MASK
+read -p "Enter path to Mask file (with .mrc): " MASK
 
 read -p "Enter project name (will be used as output folder name): " PROJECT
 
